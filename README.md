@@ -12,7 +12,7 @@ BTC 15y2a3FKLW89qoDniDMRwsdhrZeHJA1Det
 Add these gems into your Gemfile:
 
 ```ruby
-gem 'okcoin-ruby'
+gem 'okcoin-ruby', '~> 0.0.5'
 gem 'celluloid-websocket-client',  :github => 'ilyacherevkov/celluloid-websocket-client'
 ```
 
