@@ -6,7 +6,7 @@ Supports REST and Websocket protocols
 Add these gems into your Gemfile:
 
 ```ruby
-gem 'okcoin-ruby'
+gem 'okcoin-ruby',  :github => 'ilyacherevkov/okcoin-ruby'
 gem 'celluloid-websocket-client',  :github => 'ilyacherevkov/celluloid-websocket-client'
 ```
 
