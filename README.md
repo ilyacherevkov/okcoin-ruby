@@ -1,6 +1,9 @@
 # Okcoin API Ruby Wrapper
 Unofficial ruby library for Okcoin Bitcoin Exchange
 
+If you feel it's helpful and would like to donate, send coins to
+`BTC 15y2a3FKLW89qoDniDMRwsdhrZeHJA1Det`
+
 ## Installation
 
 Add these gems into your Gemfile:
