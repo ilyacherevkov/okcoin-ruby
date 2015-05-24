@@ -5,6 +5,7 @@ require 'okcoin/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "okcoin-ruby"
+  spec.required_ruby_version = '~> 2.0'
   spec.version       = Okcoin::VERSION
   spec.authors       = ["Ilya Cherevkov"]
   spec.email         = ["icherevkov@gmail.com"]
