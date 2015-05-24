@@ -12,7 +12,7 @@ BTC 15y2a3FKLW89qoDniDMRwsdhrZeHJA1Det
 Add these gems into your Gemfile:
 
 ```ruby
-gem 'okcoin-ruby', '0.0.4'
+gem 'okcoin-ruby'
 gem 'celluloid-websocket-client',  :github => 'ilyacherevkov/celluloid-websocket-client'
 ```
 
@@ -29,6 +29,8 @@ okcoin = Okcoin::Rest.new api_key: ENV['OKCOIN_APIKEY'], secret_key: ENV['OKCOIN
 ```
 
 Make requests
+
+Spot Price
 ```ruby
 okcoin.spot_ticker(pair: "btc_usd")
 okcoin.spot_orderbook(pair: "btc_usd", items_no: 50, merge: 0)
@@ -37,15 +39,18 @@ okcoin.spot_kandlestick(pair: "btc_usd", type: "30min", size: 50, since: nil)
 okcoin.spot_swaps_orderbook(pair: "btc_usd")
 ```
 
+Spot Trade
 ```ruby
 okcoin.spot_userinfo
 okcoin.spot_trade(pair: "btc_usd", type: "buy", price:240, amount:1)
 ```
 
+Futures Price
 ```ruby
 okcoin.futures_orderbook(pair: "btc_usd", contract: "this_week", items_no: 50)
 ```
 
+Futures Trade
 ```ruby
 okcoin.futures_userinfo
 okcoin.futures_trade(pair: "btc_usd", amount: 1, type: 1, contract_type: "this_week", match_price: 1, price: nil, lever_rate: 10)
