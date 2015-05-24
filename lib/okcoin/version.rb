@@ -1,3 +1,3 @@
-module Okcoin
-  VERSION = "0.0.2"
+class Okcoin
+  VERSION = "0.0.3"
 end

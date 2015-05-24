@@ -1,5 +1,4 @@
-module Okcoin
-  class Rest
+class Okcoin::Rest
   BASE_URI = "https://www.okcoin.com/api"
   TIMEOUT = 0.5
 
@@ -116,6 +115,4 @@ module Okcoin
         query ? JSON.parse(Curl.get(BASE_URI + url, query).body_str) : JSON.parse(Curl.get(BASE_URI + url).body_str)
       end
     end
-  end
-  
 end

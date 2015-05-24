@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Okcoin::VERSION
   spec.authors       = ["Ilya Cherevkov"]
   spec.email         = ["icherevkov@gmail.com"]
-  spec.summary       = %q{Simple Okcoin REST and Websocket API wrapper.}
-  spec.description   = %q{Okcoin Ruby REST and Websockets API wrapper. REST is handled with Curb and Websocket with CelluloidIO}
+  spec.summary       = %q{A ruby library for okcoin.com}
+  spec.description   = %q{A ruby library for okcoin.com}
   spec.homepage      = "https://github.com/ilyacherevkov/okcoin-ruby"
   spec.license       = "MIT"
 
