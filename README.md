@@ -1,5 +1,5 @@
 # Okcoin API Ruby Wrapper
-Supports REST and Websocket protocols
+Unofficial ruby library for Okcoin Bitcoin Exchange
 
 ## Installation
 
