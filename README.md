@@ -19,7 +19,8 @@ And then execute:
 ### 1. REST Example
 ```
 okcoin = Okcoin::Rest.new api_key: ENV['OKCOIN_APIKEY'], secret_key: ENV['OKCOIN_SECRET']
-puts okcoin.user_info
+puts okcoin.userinfo
+puts okcoin.orderbook(pair: "btcusd", items_no: 50)
 ```
 
 ### 2. WebSocket Example
@@ -27,7 +28,9 @@ puts okcoin.user_info
 ```
   okcoin = Okcoin::WS.new api_key: ENV['OKCOIN_APIKEY'], secret_key: ENV['OKCOIN_SECRET']
   okcoin.userinfo
-  sleep 10
+  okcoin.pingpong
+  okcoin.price_api("{'event':'addChannel','channel':'ok_btcusd_ticker'}")
+  while true; sleep 1; end
   okcoin.close
 ``` 
 
