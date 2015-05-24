@@ -6,7 +6,7 @@ Unofficial ruby library for Okcoin Bitcoin Exchange
 Add these gems into your Gemfile:
 
 ```ruby
-gem 'okcoin-ruby',  :github => 'ilyacherevkov/okcoin-ruby'
+gem 'okcoin-ruby', '0.0.4'
 gem 'celluloid-websocket-client',  :github => 'ilyacherevkov/celluloid-websocket-client'
 ```
 
