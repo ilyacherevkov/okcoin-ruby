@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["icherevkov@gmail.com"]
   spec.summary       = %q{Simple Okcoin REST and Websocket API wrapper.}
   spec.description   = %q{Okcoin Ruby REST and Websockets API wrapper. REST is handled with Curb and Websocket with CelluloidIO}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/ilyacherevkov/okcoin-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
