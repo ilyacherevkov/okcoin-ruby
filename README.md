@@ -2,7 +2,10 @@
 Unofficial ruby library for Okcoin Bitcoin Exchange
 
 If you feel it's helpful and would like to donate, send coins to
-`BTC 15y2a3FKLW89qoDniDMRwsdhrZeHJA1Det`
+
+```
+BTC 15y2a3FKLW89qoDniDMRwsdhrZeHJA1Det
+```
 
 ## Installation
 
@@ -20,15 +23,40 @@ And then execute:
 ## Usage
 
 ### 1. REST Example
-```
+Initialize client
+```ruby
 okcoin = Okcoin::Rest.new api_key: ENV['OKCOIN_APIKEY'], secret_key: ENV['OKCOIN_SECRET']
-puts okcoin.userinfo
-puts okcoin.orderbook(pair: "btcusd", items_no: 50)
+```
+
+Make requests
+```ruby
+okcoin.spot_ticker(pair: "btc_usd")
+okcoin.spot_orderbook(pair: "btc_usd", items_no: 50, merge: 0)
+okcoin.spot_trades(pair: "btc_usd", since: nil)
+okcoin.spot_kandlestick(pair: "btc_usd", type: "30min", size: 50, since: nil)
+okcoin.spot_swaps_orderbook(pair: "btc_usd")
+```
+
+```ruby
+okcoin.spot_userinfo
+okcoin.spot_trade(pair: "btc_usd", type: "buy", price:240, amount:1)
+```
+
+```ruby
+okcoin.futures_orderbook(pair: "btc_usd", contract: "this_week", items_no: 50)
+```
+
+```ruby
+okcoin.futures_userinfo
+okcoin.futures_trade(pair: "btc_usd", amount: 1, type: 1, contract_type: "this_week", match_price: 1, price: nil, lever_rate: 10)
+okcoin.futures_cancel(pair: "btc_usd", contract_type: "this_week", order_id: 12345)
+okcoin.futures_order_info(order_id: 12345, symbol: "btc_usd", contract_type: "this_week", status: nil, current_page: nil, page_length: nil)
+okcoin.futures_position(pair: "btc_usd", contract_type: "this_week")
 ```
 
 ### 2. WebSocket Example
 
-```
+```ruby
   okcoin = Okcoin::WS.new api_key: ENV['OKCOIN_APIKEY'], secret_key: ENV['OKCOIN_SECRET']
   okcoin.userinfo
   okcoin.pingpong
