@@ -30,6 +30,8 @@ okcoin = Okcoin::Rest.new api_key: ENV['OKCOIN_APIKEY'], secret_key: ENV['OKCOIN
 
 Make requests
 
+[See OKCoin REST API reference](https://www.okcoin.com/about/rest_api.do)
+
 Spot Price
 ```ruby
 okcoin.spot_ticker(pair: "btc_usd")
@@ -43,11 +45,27 @@ Spot Trade
 ```ruby
 okcoin.spot_userinfo
 okcoin.spot_trade(pair: "btc_usd", type: "buy", price:240, amount:1)
+# max 5 orders in spot_batch_trade per request
+okcoin.batch_spot_trade(pair: "btc_usd", type: "buy", orders_data: [{price:3,amount:5,type:'sell'},{price:3,amount:3,type:'buy'},{price:3,amount:3}])
+# max 3 order_ids in spot_cancel per request 
+okcoin.spot_cancel(pair: "btc_usd", order_id: "1234, 2345, 3456")
+# -1 returns all unfilled orders, otherwise return the order specified
+okcoin.spot_order_info(pair: "btc_usd", order_id: -1)
+# max 50 orders per request
+spot_orders_info(pair: "btc_usd", type: 0, order_id: "12345, 2345, 3456")
 ```
 
 Futures Price
 ```ruby
-okcoin.futures_orderbook(pair: "btc_usd", contract: "this_week", items_no: 50)
+okcoin.futures_orderbook(pair: "btc_usd", contract_type: "this_week", items_no: 50, merge: 0)
+okcoin.futures_trades(pair: "btc_usd", contract_type: "this_week")
+okcoin.futures_index(pair: "btc_usd")
+okcoin.exchange_rate
+okcoin.futures_estimated_price(pair: "btc_usd")
+okcoin.futures_trades_history(pair: "btc_usd", date: nil, since: nil)
+okcoin.futures_kandlestick(pair: "btc_usd", type: "30min", contract_type: "this_week", size: 50, since: nil)
+okcoin.futures_hold_amount(pair: "btc_usd", contract_type: "this_week")
+okcoin.futures_explosive(pair: "btc_usd", contract_type: "this_week", status: 0, current_page: nil, page_length: nil)
 ```
 
 Futures Trade
@@ -60,7 +78,7 @@ okcoin.futures_position(pair: "btc_usd", contract_type: "this_week")
 ```
 
 ### 2. WebSocket Example
-
+[See OKCoin WebSocket API reference](https://www.okcoin.com/about/ws_api.do)
 ```ruby
   okcoin = Okcoin::WS.new api_key: ENV['OKCOIN_APIKEY'], secret_key: ENV['OKCOIN_SECRET']
   okcoin.userinfo

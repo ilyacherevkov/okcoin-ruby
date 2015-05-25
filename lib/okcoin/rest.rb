@@ -9,7 +9,9 @@ class Okcoin
     end
 
     public
+
       # Spot Price API
+
       def spot_ticker(pair: "btc_usd")
         query = { "symbol" => pair }
         get_request(url: "/v1/ticker.do", query: query)
@@ -53,13 +55,97 @@ class Okcoin
         post_request post_data: post_data, action: "/v1/trade.do"
       end
 
+      def spot_batch_trade(pair:, type:, orders_data:)
+        post_data = initial_post_data
+
+        post_data["symbol"] = pair
+        post_data["type"] = type
+        post_data["orders_data"] = orders_data
+
+        post_request post_data: post_data, action: "/v1/batch_trade.do"
+      end
+
+      def spot_cancel(pair:, order_id:)
+        post_data = initial_post_data
+
+        post_data["symbol"] = pair
+        post_data["order_id"] = order_id
+
+        post_request post_data: post_data, action: "/v1/cancel_order.do"
+      end
+
+      def spot_order_info(pair:, order_id:)
+        post_data = initial_post_data
+
+        post_data["symbol"] = pair
+        post_data["order_id"] = order_id
+
+        post_request post_data: post_data, action: "/v1/order_info.do"
+      end
+
+      def spot_orders_info(pair:, type:, order_id:)
+        post_data = initial_post_data
+
+        post_data["symbol"] = pair
+        post_data["order_id"] = order_id
+        post_data["type"] = type
+
+        post_request post_data: post_data, action: "/v1/orders_info.do"
+      end
+
       # Futures Price API
-      def futures_orderbook(pair:, contract:, items_no: 50)
-        query = { "symbol" => pair, "contractType" => contract, "size" => items_no }
+
+      def futures_ticker(pair: "btc_usd", contract_type: "this_week")
+        query = { "symbol" => pair, "contract_type" => contract_type }
+        get_request(url: "/v1/future_ticker.do", query: query)
+      end
+
+      def futures_orderbook(pair: "btc_usd", contract_type: "this_week", items_no: 50, merge: 0)
+        query = { "symbol" => pair, "contract_type" => contract_type, "size" => items_no, "merge" => merge }
         get_request(url: "/future_depth.do", query: query)
       end
 
+      def futures_trades(pair: "btc_usd", contract_type: "this_week")
+        query = { "symbol" => pair, "contract_type" => since }
+        get_request(url: "/v1/trades.do", query: query)
+      end
+
+      def futures_index(pair: "btc_usd")
+        query = { "symbol" => pair }
+        get_request(url: "/v1/future_index.do", query: query)
+      end
+
+      def exchange_rate
+        get_request(url: "/v1/exchange_rate.do")
+      end
+
+      def futures_estimated_price(pair: "btc_usd")
+        query = { "symbol" => pair }
+        get_request(url: "/v1/future_estimated_price.do", query: query)
+      end
+
+      def futures_trades_history(pair: "btc_usd", date:, since:)
+        query = { "symbol" => pair, "date" => date, "since" => since }
+        get_request(url: "/v1/future_trades_history.do", query: query)
+      end
+
+      def futures_kandlestick(pair: "btc_usd", type: "30min", contract_type: "this_week", size: 50, since: nil)
+        query = { "symbol" => pair, "type" => type, "contract_type" => contract_type, "size" => size, "since" => since }
+        get_request(url: "/v1/future_kline.do", query: query)
+      end
+
+      def futures_hold_amount(pair: "btc_usd", contract_type: "this_week")
+        query = { "symbol" => pair, "contract_type" => contract_type }
+        get_request(url: "/v1/future_hold_amount.do", query: query)
+      end
+
+      def futures_explosive(pair: "btc_usd", contract_type: "this_week", status: 0, current_page: nil, page_length: nil)
+        query = { "symbol" => pair, "contract_type" => contract_type, "status" => status, "current_page" => current_page, "page_length" => page_length }
+        get_request(url: "/v1/future_hold_amount.do", query: query)
+      end
+
       # Futures Trading API
+
       def futures_userinfo
         post_data = initial_post_data
         post_request post_data: post_data, action: "/v1/future_userinfo.do"
