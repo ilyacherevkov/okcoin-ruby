@@ -46,7 +46,7 @@ class Okcoin
 
       def spot_trade(pair:, type:, price:, amount:)
         post_data = initial_post_data
-        
+
         post_data["symbol"] = pair
         post_data["type"] = type
         post_data["amount"] = amount
@@ -91,6 +91,45 @@ class Okcoin
         post_data["type"] = type
 
         post_request post_data: post_data, action: "/v1/orders_info.do"
+      end
+
+      def spot_withdraw(pair: 'btc_usd', trade_pwd:, withdraw_address:, withdraw_amount:, chargefee: 0.0001)
+        postdata = initial_post_data
+
+        postdata['symbol'] = pair
+        postdata['chargefee'] = chargefee
+        postdata['trade_pwd'] = trade_pwd
+        postdata['withdraw_address'] = withdraw_address
+        postdata['withdraw_amount'] = withdraw_amount
+        post_request post_data: post_data, action: "/v1/withdraw.do"
+      end
+
+      def spot_cancel_withdraw(pair: 'btc_usd', withdraw_id:)
+        postdata = initial_post_data
+
+        postdata['symbol'] = pair
+        postdata['withdraw_id'] = withdraw_id
+        post_request post_data: post_data, action: "/v1/cancel_withdraw.do"
+      end
+
+      def spot_withdraw_info(pair: 'btc_usd', withdraw_id:)
+        postdata = initial_post_data
+
+        postdata['symbol'] = pair
+        postdata['withdraw_id'] = withdraw_id
+        post_request post_data: post_data, action: "/v1/withdraw_info.do"
+      end
+
+      # type 0：deposits 1 ：withdraw
+      def spot_account_records(pair: 'btc_usd', type: 1, current_page: 1, page_length: 50)
+        postdata = initial_post_data
+
+        postdata['symbol'] = pair
+        postdata['type'] = type
+        postdata['current_page'] = current_page
+        postdata['page_length'] = page_length
+
+        post_request post_data: post_data, action: "/v1/account_records.do"
       end
 
       # Futures Price API
