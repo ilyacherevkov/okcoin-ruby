@@ -237,7 +237,7 @@ class Okcoin
     private 
 
       def logger
-        @logger ||= Object.const_defined?(:Rails) ? Rails.logger : Logger.new
+        @logger ||= Object.const_defined?(:Rails) ? Rails.logger : Logger.new(STDOUT)
       end
 
       def handle_timeouts
