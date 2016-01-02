@@ -236,11 +236,15 @@ class Okcoin
 
     private 
 
+      def logger
+        @logger ||= Object.const_defined?(:Rails) ? Rails.logger : Logger.new
+      end
+
       def handle_timeouts
         begin
           yield
         rescue => ex
-          Rails.logger.info "Okcoin: An error of type #{ex.class} happened, message is #{ex.message}. Retrying..."
+          logger.info("Okcoin: An error of type #{ex.class} happened, message is #{ex.message}. Retrying...")
           sleep TIMEOUT
           retry
         end
