@@ -1,3 +1,4 @@
+require 'json'
 require 'curb'
 require 'celluloid/websocket/client'
 require 'okcoin/rest'
