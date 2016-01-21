@@ -178,11 +178,6 @@ class Okcoin
         get_request(url: "/v1/future_hold_amount.do", query: query)
       end
 
-      def futures_explosive(pair: "btc_usd", contract_type: "this_week", status: 0, current_page: nil, page_length: nil)
-        query = { "symbol" => pair, "contract_type" => contract_type, "status" => status, "current_page" => current_page, "page_length" => page_length }
-        get_request(url: "/v1/future_hold_amount.do", query: query)
-      end
-
       # Futures Trading API
 
       def futures_userinfo
@@ -232,6 +227,17 @@ class Okcoin
         post_data["symbol"] = pair
         post_data["contract_type"] = contract_type
         post_request post_data: post_data, action: "/v1/future_position.do"
+      end
+
+      def futures_explosive(pair:, contract_type:, status:, current_page:, page_length:)
+        post_data = initial_post_data
+        post_data["symbol"] = pair
+        post_data["contract_type"] = contract_type
+        post_data["status"] = status
+        post_data["current_page"] = current_page
+        post_data["page_length"] = page_length
+
+        post_request post_data: post_data, action: "/v1/future_explosive.do"
       end
 
     private 
