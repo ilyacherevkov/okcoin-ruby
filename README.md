@@ -12,7 +12,7 @@ BTC 15y2a3FKLW89qoDniDMRwsdhrZeHJA1Det
 Add these gems into your Gemfile:
 
 ```ruby
-gem 'okcoin-ruby', '~> 0.0.5'
+gem 'okcoin-ruby', '~> 0.0.6'
 gem 'celluloid-websocket-client',  :github => 'ilyacherevkov/celluloid-websocket-client'
 ```
 
@@ -65,7 +65,6 @@ okcoin.futures_estimated_price(pair: "btc_usd")
 okcoin.futures_trades_history(pair: "btc_usd", date: nil, since: nil)
 okcoin.futures_kandlestick(pair: "btc_usd", type: "30min", contract_type: "this_week", size: 50, since: nil)
 okcoin.futures_hold_amount(pair: "btc_usd", contract_type: "this_week")
-okcoin.futures_explosive(pair: "btc_usd", contract_type: "this_week", status: 0, current_page: nil, page_length: nil)
 ```
 
 Futures Trade
@@ -75,6 +74,8 @@ okcoin.futures_trade(pair: "btc_usd", amount: 1, type: 1, contract_type: "this_w
 okcoin.futures_cancel(pair: "btc_usd", contract_type: "this_week", order_id: 12345)
 okcoin.futures_order_info(order_id: 12345, symbol: "btc_usd", contract_type: "this_week", status: nil, current_page: nil, page_length: nil)
 okcoin.futures_position(pair: "btc_usd", contract_type: "this_week")
+okcoin.futures_explosive(pair: "btc_usd", contract_type: "this_week", status: 0, current_page: 1, page_length: 50)
+# status - 0: open liquidation orders of last 7 days; 1: filled liquidation orders of last 7 days
 ```
 
 ### 2. WebSocket Example
