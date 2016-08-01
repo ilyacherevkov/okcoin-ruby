@@ -265,7 +265,7 @@ class Okcoin
       def post_request(post_data:, action:)
         params_string = post_data.sort.collect{|k, v| "#{k}=#{v}"} * '&'
         hashed_string = params_string + "&secret_key=#{@secret_key}"
-        signature = OpenSSL::Digest.new("md5", hashed_string).to_s.upcase
+        signature = Digest::MD5.hexdigest(hashed_string).upcase
         post_data["sign"] = signature
 
         payload = post_data.sort.collect{|k, v| "#{k}=#{v}"} * '&'
